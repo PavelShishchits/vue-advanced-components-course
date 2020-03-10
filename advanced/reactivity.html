@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+
+        let activeUpdate;
+
+        window.Dep = class Dep {
+
+            constructor() {
+                this.subscribers = new Set();
+            }
+
+            depend() {
+                if (activeUpdate) {
+                    this.subscribers.add(activeUpdate);
+                }
+            }
+
+            notify() {
+                this.subscribers.forEach(subscriber => subscriber());
+            }
+        };
+
+        function autorun(update) {
+
+            function wrappedUpdate() {
+                activeUpdate = wrappedUpdate;
+                update();
+                activeUpdate = null;
+            }
+
+            wrappedUpdate();
+        }
+
+        const observer = (obj) => {
+           Object.keys(obj).forEach((key) => {
+               observePropToReactive(obj, key);
+           });
+       };
+
+       const observePropToReactive = (object, key) => {
+           let value = object[key];
+           Object.defineProperty(object, key, {
+               get() {
+                   if(activeUpdate) {
+                       dep.depend();
+                   }
+                   return value;
+               },
+               set(newValue) {
+                   value = newValue;
+                   dep.notify();
+               }
+           })
+       };
+
+       const dep = new Dep();
+
+       const state = {
+           count: 2
+       };
+
+       observer(state);
+
+        autorun(() => {
+            console.log('setValue', state.count);
+        });
+
+        state.count = state.count + 5;
+
+    </script>
+
+<!--    <script>-->
+
+<!--        let activeUpdate;-->
+
+<!--        window.Dep = class Dep {-->
+
+<!--            constructor() {-->
+<!--                this.subscribers = new Set();-->
+<!--            }-->
+
+<!--            depend() {-->
+<!--                if (activeUpdate) {-->
+<!--                    this.subscribers.add(activeUpdate);-->
+<!--                }-->
+<!--                console.log(this.subscribers);-->
+<!--            }-->
+
+<!--            notify() {-->
+<!--                this.subscribers.forEach(subscriber => subscriber());-->
+<!--            }-->
+<!--        };-->
+
+<!--        function autorun(update) {-->
+
+<!--            function wrappedUpdate() {-->
+<!--                activeUpdate = wrappedUpdate;-->
+<!--                update();-->
+<!--                activeUpdate = null;-->
+<!--            }-->
+
+<!--            wrappedUpdate();-->
+<!--        }-->
+
+<!--        // execution-->
+<!--        const dep = new Dep();-->
+
+<!--        autorun(() => {-->
+<!--            dep.depend();-->
+<!--            console.log('updated');-->
+<!--        });-->
+
+<!--        dep.notify();-->
+
+<!--    </script>-->
+</body>
+</html>

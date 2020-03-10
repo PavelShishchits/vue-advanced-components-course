@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <div>
+            <input type="text" name="email" v-model="email" />
+            {{ email }}
+        </div>
+        <div>
+            <input type="text" name="name" v-model="name" />
+            {{ name }}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+
+        const Validation = {
+            install(Vue) {
+                Vue.mixin({
+                    created() {
+                        const rules = this.$options.rules;
+                        if (!rules) {
+                            return false;
+                        }
+                        Object.keys(rules).forEach((key) => {
+                            this.$watch(key, (newValue) => {
+                                // console.log(`${key} value has been changed`);
+                                const rule = rules[key];
+                                if (!rule.validation(newValue)) {
+                                    console.log(`Error in ${key} rule`);
+                                }
+                            })
+                        });
+                    }
+                })
+            }
+        };
+
+        Vue.use(Validation);
+
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    email: '',
+                    name: ''
+                }
+            },
+            mounted() {
+              console.log(this);
+            },
+            rules: {
+                email: {
+                    validation(value) {
+                        return value.length >= 6;
+                    },
+                    message: 'Email field should be filled'
+                },
+                name: {
+                    validation(value) {
+                        return value.length >= 6;
+                    },
+                    message: 'Name field should be filled'
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

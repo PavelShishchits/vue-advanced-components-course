@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <product-list :products="products">
+            <template v-slot:mew="{product}">
+                {{ product.text }} | {{ product.price }}
+            </template>
+        </product-list>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+
+        Vue.component('product-list', {
+            props: {
+                products: {
+                    type: Array,
+                    required: true
+                }
+            },
+            template: `
+                <ul>
+                    <li v-for="(product, i) in products">
+                        <slot name="mew" :product="product">
+                            {{ product.text }}
+                        </slot>
+                    </li>
+                </ul>
+            `
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                products: [
+                    {
+                        text: 'MacBook',
+                        price: '1000$'
+                    },
+                    {
+                        text: 'MacBook Pro',
+                        price: '1500$'
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

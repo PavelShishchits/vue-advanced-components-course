@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <component :is="activeComponent"></component>
+        <a href="#foo">Foo</a>
+        <a href="#bar">Bar</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+
+        window.addEventListener('hashchange', () => {
+            app.url = window.location.hash.slice(1);
+        });
+
+        const Foo = {
+            template: '<div>Foo</div>'
+        };
+
+        const Bar = {
+            template: '<div>Bar</div>'
+        };
+
+        const NotFound = {
+            template: '<div>Not found</div>'
+        };
+
+        const routeMap = {
+            'bar': Bar,
+            'foo': Foo,
+            '/': NotFound
+        };
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                url: window.location.hash.slice(1)
+            },
+            computed: {
+                activeComponent() {
+                    const component = routeMap[this.url];
+                    if (!component) {
+                        window.location.hash = '/';
+                    }
+                    return component;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
