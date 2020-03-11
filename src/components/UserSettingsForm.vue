@@ -12,23 +12,36 @@
                 <toggle-input v-model="receiveNewsletter"></toggle-input>
             </div>
         </div>
-        <div class="text-right">
+        <div class="flex justify-between">
+            <delete-account-btn class="text-red-dark hover:underline" :account-id="accountId">Delete Account</delete-account-btn>
             <button type="submit" class="btn btn-blue">Update Settings</button>
         </div>
+        <announcement-modal :show="showAnnouncement" @close="showAnnouncement = false"></announcement-modal>
     </form>
 </template>
 
 <script>
-    import ToggleInput from "./ToggleInput.vue"
+    import ToggleInput from "@/components/ToggleInput.vue"
+    import DeleteAccountBtn from '@/components/DeleteAccountBtn.vue'
+    import AnnouncementModal from '@/components/modals/AnnouncementModal.vue';
 
     export default {
+        props: {
+            accountId: {
+                type: Number,
+                default: 7
+            }
+        },
         components: {
-            ToggleInput
+            AnnouncementModal,
+            ToggleInput,
+            DeleteAccountBtn
         },
         data() {
             return {
                 email: "jane@example.com",
-                receiveNewsletter: false
+                receiveNewsletter: false,
+                showAnnouncement: true
             }
         },
         methods: {

@@ -1,19 +1,12 @@
 <template>
-    <div class="modal-backdrop" v-show="show">
-        <div class="modal">
-            <h1 class="text-center text-2xl font-bold mb-4">
-                Exciting new features are here!
-            </h1>
-            <p class="text-center text-grey-darker mb-6">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ut eligendi quod tempore totam explicabo sit consectetur architecto? Tempora, repellat est rem ut esse ab officia saepe ratione tempore. Obcaecati.
-            </p>
-            <div class="text-center">
-                <button @click="dismiss" type="button" class="btn btn-blue">
-                    Dismiss
-                </button>
+    <portal to="modals" v-if="show">
+        <div class="modal-backdrop" v-show="show">
+            <div class="modal">
+                <button @click="closeModal" class="close-btn">X</button>
+                <slot></slot>
             </div>
         </div>
-    </div>
+    </portal>
 </template>
 
 <script>
@@ -28,13 +21,11 @@
             }
         },
         created() {
-
             const escapeHandler = (e) => {
                 if (this.show && e.key === 'Escape') {
-                    this.dismiss();
+                    this.closeModal();
                 }
             };
-
             document.addEventListener('keydown', escapeHandler);
             this.$once('hook:destroyed', () => {
                 document.removeEventListener('keydown', escapeHandler);
@@ -53,9 +44,23 @@
             }
         },
         methods: {
-            dismiss() {
+            closeModal() {
                 this.$emit('close');
             }
         }
     }
 </script>
+
+<style lang="scss">
+
+    .modal {
+        position: relative;
+        
+        .close-btn {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+    }
+
+</style>

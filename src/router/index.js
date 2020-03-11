@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import ComponentBindings from '../views/ComponentBindings.vue';
 import GlobalEvents from '../views/GlobalEvents.vue';
+import Portals from '../views/Portals.vue';
+import ScopedSlots from '../views/ScopedSlots.vue';
+import DataProvider from '../views/DataProvider.vue';
 
 Vue.use(VueRouter);
 
@@ -21,6 +24,21 @@ const routes = [
     path: '/global-events',
     name: 'GlobalEvents',
     component: GlobalEvents
+  },
+  {
+    path: '/portals',
+    name: 'Portals',
+    component: Portals
+  },
+  {
+    path: '/scoped-slots',
+    name: 'ScopedSlots',
+    component: ScopedSlots
+  },
+  {
+    path: '/data-provider',
+    name: 'DataProvider',
+    component: DataProvider
   },
 ];
 

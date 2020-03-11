@@ -5,11 +5,11 @@
 </template>
 
 <script>
-    import UserSettingsForm from '@/components/UserSettingsForm.vue';
+    import UserSettingsForm from '@/components/UserSettingsForm.vue'
 
     export default {
         components: {
-            UserSettingsForm
+            UserSettingsForm,
         },
         data() {
             return {

@@ -33,7 +33,7 @@
 </template>
 
 <script>
-    import AnnouncementModal from '@/components/AnnouncementModal.vue';
+    import AnnouncementModal from '@/components/modals/AnnouncementModal.vue';
 
     export default {
         data() {
