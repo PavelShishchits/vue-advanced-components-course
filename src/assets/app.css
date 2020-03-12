@@ -81,6 +81,11 @@ sub {
 sup {
   top: -0.5em;
 }
+
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
 audio,
 video {
   display: inline-block;

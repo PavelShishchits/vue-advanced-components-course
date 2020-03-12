@@ -6,6 +6,9 @@ import GlobalEvents from '../views/GlobalEvents.vue';
 import Portals from '../views/Portals.vue';
 import ScopedSlots from '../views/ScopedSlots.vue';
 import DataProvider from '../views/DataProvider.vue';
+import RenderLessComponents from '../views/RenderLessComponents.vue';
+import ProvideInject from '../views/ProvideInject.vue';
+import SortableList from '../views/SortableList.vue';
 
 Vue.use(VueRouter);
 
@@ -39,6 +42,21 @@ const routes = [
     path: '/data-provider',
     name: 'DataProvider',
     component: DataProvider
+  },
+  {
+    path: '/render-less-components',
+    name: 'RenderLessComponents',
+    component: RenderLessComponents
+  },
+  {
+    path: '/provide-inject',
+    name: 'ProvideInject',
+    component: ProvideInject
+  },
+  {
+    path: '/sortable-list',
+    name: 'SortableList',
+    component: SortableList
   },
 ];
 

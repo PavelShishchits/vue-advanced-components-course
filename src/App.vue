@@ -7,6 +7,9 @@
       <router-link to="/portals">Portals</router-link> |
       <router-link to="/scoped-slots">ScopedSlots</router-link> |
       <router-link to="/data-provider">DataProvider</router-link> |
+      <router-link to="/render-less-components">RenderLessComponents</router-link> |
+      <router-link to="/provide-inject">ProvideInject</router-link> |
+      <router-link to="/sortable-list">SortableList</router-link> |
     </div>
     <div class="min-h-screen p-8">
       <div class="max-w-sm mx-auto">

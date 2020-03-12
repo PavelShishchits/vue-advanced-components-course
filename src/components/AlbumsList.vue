@@ -1,6 +1,7 @@
 <template>
     <div class="card">
         <h1 class="text-2xl font-bold mb-6">Top Death Metal Albums</h1>
+        <slot name="loader"></slot>
         <div class="album-grid">
             <div class="album-grid-item" v-for="album in albums">
                 <img :src="album.artwork" class="" alt="">
