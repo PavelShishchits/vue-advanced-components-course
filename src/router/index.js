@@ -9,6 +9,7 @@ import DataProvider from '../views/DataProvider.vue';
 import RenderLessComponents from '../views/RenderLessComponents.vue';
 import ProvideInject from '../views/ProvideInject.vue';
 import SortableList from '../views/SortableList.vue';
+import SearchSelect from '../views/SearchSelect.vue';
 
 Vue.use(VueRouter);
 
@@ -57,6 +58,11 @@ const routes = [
     path: '/sortable-list',
     name: 'SortableList',
     component: SortableList
+  },
+  {
+    path: '/search-select',
+    name: 'SearchSelect',
+    component: SearchSelect
   },
 ];
 

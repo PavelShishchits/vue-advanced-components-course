@@ -10,6 +10,7 @@
       <router-link to="/render-less-components">RenderLessComponents</router-link> |
       <router-link to="/provide-inject">ProvideInject</router-link> |
       <router-link to="/sortable-list">SortableList</router-link> |
+      <router-link to="/search-select">SearchSelect</router-link> |
     </div>
     <div class="min-h-screen p-8">
       <div class="max-w-sm mx-auto">

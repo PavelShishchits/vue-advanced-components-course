@@ -8,6 +8,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@popperjs/core": "^2.1.0",
     "@shopify/draggable": "^1.0.0-beta.8",
     "core-js": "^3.6.4",
     "portal-vue": "^2.1.7",
