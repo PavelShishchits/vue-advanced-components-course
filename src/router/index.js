@@ -10,6 +10,7 @@ import RenderLessComponents from '../views/RenderLessComponents.vue';
 import ProvideInject from '../views/ProvideInject.vue';
 import SortableList from '../views/SortableList.vue';
 import SearchSelect from '../views/SearchSelect.vue';
+import RecursiveMenu from '../views/RecursiveMenu.vue';
 
 Vue.use(VueRouter);
 
@@ -63,6 +64,11 @@ const routes = [
     path: '/search-select',
     name: 'SearchSelect',
     component: SearchSelect
+  },
+  {
+    path: '/recursive-menu',
+    name: 'RecursiveMenu',
+    component: RecursiveMenu
   },
 ];
 
