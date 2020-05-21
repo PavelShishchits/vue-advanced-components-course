@@ -12,6 +12,7 @@
       <router-link to="/sortable-list">SortableList</router-link> |
       <router-link to="/search-select">SearchSelect</router-link> |
       <router-link to="/recursive-menu">RecursiveMenu</router-link> |
+      <router-link to="/dynamic-form">DynamicForm</router-link> |
     </div>
     <div class="min-h-screen p-8">
       <div class="max-w-sm mx-auto">

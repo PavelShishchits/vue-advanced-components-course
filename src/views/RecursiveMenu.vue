@@ -1,5 +1,10 @@
 <template>
-    <tree-menu :label="menu.label" :nodes="menu.nodes" :depth="0"></tree-menu>
+    <div>
+        <tree-menu :label="menu.label" :nodes="menu.nodes" :depth="0"></tree-menu>
+        <br>
+        <br>
+        <test-async-component></test-async-component>
+    </div>
 </template>
 
 <script>
@@ -32,7 +37,8 @@
 
     export default {
         components: {
-            TreeMenu
+            TreeMenu,
+            'test-async-component': () => import('../components/TestAsyncComponents')
         },
         props: {},
         data() {

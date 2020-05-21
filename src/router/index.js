@@ -11,6 +11,7 @@ import ProvideInject from '../views/ProvideInject.vue';
 import SortableList from '../views/SortableList.vue';
 import SearchSelect from '../views/SearchSelect.vue';
 import RecursiveMenu from '../views/RecursiveMenu.vue';
+import DynamicForm from '../views/DynamicForm.vue';
 
 Vue.use(VueRouter);
 
@@ -69,6 +70,11 @@ const routes = [
     path: '/recursive-menu',
     name: 'RecursiveMenu',
     component: RecursiveMenu
+  },
+  {
+    path: '/dynamic-form',
+    name: 'DynamicForm',
+    component: DynamicForm
   },
 ];
 
